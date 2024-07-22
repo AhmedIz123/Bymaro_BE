@@ -64,3 +64,10 @@ class AdminUserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('first_name', 'last_name', 'group', 'is_staff' ,'is_active' ,'chantier')
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'first_name', 'last_name', 'group', 'chantier','date_joined']
+
+

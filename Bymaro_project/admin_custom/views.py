@@ -1,10 +1,15 @@
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import CustomUser
-from .serializers import AdminUserCreationSerializer, AdminUserUpdateSerializer
+from .serializers import AdminUserCreationSerializer, AdminUserUpdateSerializer, UserSerializer
 
+@api_view(['GET'])
+def user_list(request):
+    users = CustomUser.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def admin_create_user(request):
