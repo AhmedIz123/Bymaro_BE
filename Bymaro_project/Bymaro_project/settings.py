@@ -141,7 +141,7 @@ EMAIL_PORT = 587  # Port pour TLS
 EMAIL_USE_TLS = True  # Utiliser TLS
 EMAIL_USE_SSL = False  # Ne pas utiliser SSL
 EMAIL_HOST_USER = 'django.test@outlook.be'  # Votre adresse e-mail Outlook
-EMAIL_HOST_PASSWORD = 'Ahmed22365'  # Votre mot de passe
+EMAIL_HOST_PASSWORD = 'test'  # Votre mot de passe
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
