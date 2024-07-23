@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 
 from admin_custom.models import CustomUser
 
-
+'''
 class UserSerializer(serializers.ModelSerializer):
-    class Meta(object):
+    class Meta:
         model = CustomUser
-        fields = ['username', 'first_name','last_name']
+        fields = ('first_name', 'last_name', 'group', 'is_staff' ,'is_active' ,'chantier' , 'is_superuser','date_joined')
+'''

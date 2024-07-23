@@ -10,11 +10,10 @@ from Bymaro_project import settings
 from .models import CustomUser
 
 
-class AdminUserCreationSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name' , 'group' ,'chantier')
-
+        fields = ('first_name', 'last_name', 'group', 'is_staff' ,'is_active' ,'chantier' , 'is_superuser','date_joined')
     def create(self, validated_data):
         group = validated_data.pop('group')
         chantier_id = validated_data.pop('chantier', None)
@@ -60,14 +59,7 @@ class AdminUserCreationSerializer(serializers.ModelSerializer):
             fail_silently=False,
         )
 
-class AdminUserUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ('first_name', 'last_name', 'group', 'is_staff' ,'is_active' ,'chantier')
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ['email', 'first_name', 'last_name', 'group', 'chantier','date_joined']
+
 
 

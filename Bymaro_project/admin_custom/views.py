@@ -3,17 +3,17 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import CustomUser
-from .serializers import AdminUserCreationSerializer, AdminUserUpdateSerializer, UserSerializer
+from .serializers import UserSerializer
 
 @api_view(['GET'])
-def user_list(request):
+def users_list(request):
     users = CustomUser.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def admin_create_user(request):
-    serializer = AdminUserCreationSerializer(data=request.data)
+    serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -24,7 +24,7 @@ def admin_update_user(request, id):
         user = CustomUser.objects.get(id=id)
     except CustomUser.DoesNotExist:
         return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
-    serializer = AdminUserUpdateSerializer(user, data=request.data, partial=True)  # Use partial=True for PATCH
+    serializer = UserSerializer(user, data=request.data, partial=True)  # Use partial=True for PATCH
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
